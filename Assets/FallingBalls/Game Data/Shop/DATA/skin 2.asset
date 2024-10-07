@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e125045ae3a4bb4a91e34b2614512c0, type: 3}
+  m_Name: skin 2
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 448bb362bb38a8642a4432c13d064c1f, type: 3}
+  mesh: {fileID: -5491780849873737984, guid: 54efb9111a978ac4bbc04d187159befd, type: 3}
+  isPreunklocked: 0
