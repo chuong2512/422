@@ -2,7 +2,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 #if ADS_ADMOB
-using GoogleMobileAds.Api;
 #endif
 #if ADS_UNITY
 using UnityEngine.Monetization;
@@ -20,15 +19,13 @@ public class ServicesManager : MonoBehaviour {
     [HideInInspector] public string appID;
     [HideInInspector] public string bannerID;
 #if ADS_ADMOB
-    [HideInInspector] public AdPosition bannerPosition;
+    //[HideInInspector] public AdPosition bannerPosition;
 #endif
     [HideInInspector] public string interstitialID;
     [HideInInspector] public string rewardedVideoAdsID;
 
 #if ADS_ADMOB
-    private BannerView bannerView;
-    private InterstitialAd interstitial;
-    private RewardBasedVideoAd rewardVideoAd;
+  
 #endif
 
     #endregion
@@ -69,21 +66,13 @@ public class ServicesManager : MonoBehaviour {
     private void RequestBannerAdmob()
     {
 #if ADS_ADMOB
-        bannerView = new BannerView(bannerID,AdSize.Banner,AdPosition.Bottom);
-
-        AdRequest request = new AdRequest.Builder().Build();
-
-        bannerView.LoadAd(request);
+      
 #endif
     }
     private void RequestInterstialAdmob()
     {
 #if ADS_ADMOB
-        this.interstitial = new InterstitialAd(interstitialID);
-
-        AdRequest request = new AdRequest.Builder().Build();
-
-        this.interstitial.LoadAd(request);
+     
 #endif
     }
     private void RequestRewardedVideoAdAdmob()
@@ -91,28 +80,19 @@ public class ServicesManager : MonoBehaviour {
         isRewardAdded = false;
 
 #if ADS_ADMOB
-        this.rewardVideoAd = RewardBasedVideoAd.Instance;
-
-        this.rewardVideoAd.OnAdRewarded += HandleRewardBasedVideoRewarded;
-
-        AdRequest request = new AdRequest.Builder().Build();
-
-        this.rewardVideoAd.LoadAd(request, rewardedVideoAdsID);
+      
 #endif
     }
     public void InitializeAdmob()
     {
 #if ADS_ADMOB
-        MobileAds.Initialize(appID);
-
-        this.RequestInterstialAdmob();
-        this.RequestRewardedVideoAdAdmob();
+      
 #endif
     }
     public void InitializeBannerAdmob()
     {
         #if ADS_ADMOB
-        MobileAds.Initialize(appID);
+      
 #endif
 
         this.RequestBannerAdmob();
@@ -120,57 +100,29 @@ public class ServicesManager : MonoBehaviour {
     public void ShowBannerAdmob()
     {
         #if ADS_ADMOB
-        if(this.bannerView != null)
-          this.bannerView.Show();
+      
 #endif
     }
     public void DestroyBannerAdmob()
     {
 #if ADS_ADMOB
-        this.bannerView.Destroy();
+      
 #endif
     }
     public void ShowInterstitialAdmob()
     {
 #if ADS_ADMOB
-        if (this.interstitial.IsLoaded())
-        {
-            Debug.Log("Interstitial was loaded succesfully!");
-
-            this.interstitial.Show();
-        }
+       
 #endif
     }
     public void ShowRewardedVideoAdAdmob()
     {
 #if ADS_ADMOB
-        if (rewardVideoAd.IsLoaded())
-        {
-            Debug.Log("Rewarded was loaded succesfully!");
-
-            rewardVideoAd.Show();
-        }
+      
 #endif
     }
 #if ADS_ADMOB
-    public void HandleRewardBasedVideoRewarded(object sender, Reward args)
-    {
-        string type = args.Type;
-        double amount = args.Amount;
-
-            if (UIManager.instance.reward1)
-            {
-                UIManager.instance.GetReward(true);
-                UIManager.instance.reward1 = false;
-            }
-            else
-            {
-                UIManager.instance.GetReward2(true);
-                UIManager.instance.reward2 = false;
-            }
-
-        ServicesManager.instance.InitializeAdmob();
-    }
+  
 #endif
     #endregion
     #region UnityAds
